@@ -23,6 +23,8 @@ services:
       - "3000:3000"
     environment:
       - API_URL=http://sdv-api1:8000
+    volume:
+      - ./app:/usr/src/sdv-web/app
     networks:
       - res1
 

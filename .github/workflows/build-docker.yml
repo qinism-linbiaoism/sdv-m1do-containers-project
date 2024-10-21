@@ -15,5 +15,5 @@ jobs:
         run: docker build ./sdv-api -t qinismlinbiaoism/sdv-m1do-sdv-api:master
       - name: push_image
         run: |
-          docker login -u qinismlinbiaoism -p ${{secret.DOCKER_HUB_TOKEN}}
+          docker login -u qinismlinbiaoism -p ${{secrets.DOCKER_HUB_TOKEN}}
           docker push qinismlinbiaoism/sdv-m1do-sdv-api:master

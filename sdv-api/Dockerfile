@@ -5,6 +5,9 @@ COPY . .
 
 RUN cargo build --release
 
+FROM builder AS dev
+
+CMD ["cargo", "run"]
 
 FROM debian:12.7-slim AS prod
 

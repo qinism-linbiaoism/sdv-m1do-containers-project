@@ -2,7 +2,8 @@ services:
   #API
 
   api:
-    image: qinismlinbiaoism/sdv-m1do-sdv-api:master
+    image: qinismlinbiaoism/sdv-api:latest
+    profiles: ["prod"]
     container_name: sdv-api1
     hostname: sdv-api1
     ports:
@@ -12,9 +13,27 @@ services:
     networks:
       - res1
 
+  api-dev:
+    profiles: ["dev"]
+    image: qinismlinbiaoism/sdv-api-dev:latest
+    container_name: sdv-api-dev1
+    hostname: sdv-api-dev1
+    ports:
+      - "8001:8000"
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+    volumes:
+      - ./sdv-api/src:/usr/src/sdv-api/src
+      - ./sdv-api/cargo.lock:/usr/src/sdv-api/cargo.lock
+      - ./sdv-api/cargo.toml:/usr/src/sdv-api/cargo.toml
+    networks:
+      - resdev
+
+
   #NODE
   web:
-    image: qinismlinbiaoism/sdv-m1do-sdv-web:master
+    image: qinismlinbiaoism/sdv-web:latest
+    profiles: ["prod"]
     container_name: sdv-web1
     hostname: sdv-web1
     depends_on:
@@ -23,11 +42,28 @@ services:
       - "3000:3000"
     environment:
       - API_URL=http://sdv-api1:8000
-    volume:
-      - ./app:/usr/src/sdv-web/app
     networks:
       - res1
 
+  web-dev:
+    profiles: ["dev"]
+    image: qinismlinbiaoism/sdv-web-dev:latest
+    container_name: sdv-web-dev1
+    hostname: sdv-web-dev1
+    depends_on:
+      - api-dev
+    ports:
+      - "3001:3000"
+    environment:
+      - API_URL=http://sdv-api-dev1:8000
+    volumes:
+      - ./sdv-web/app:/usr/src/sdv-web/app
+    networks:
+      - resdev
+
+
 networks:
   res1:
+    driver: bridge
+  resdev:
     driver: bridge

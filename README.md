@@ -36,7 +36,8 @@ Run `cargo build --release` to build and compile the app. This will create an ex
 
 #### Using Docker
 
-> TODO
+Run `docker compose -d --profile dev up` to build the containers to start the application, and `docker compose --profile prod dev` to stop them.
+You may have to wait until the containers are fully initialized, as it can take a while for the API to build everything necessary for it to run.
 
 ### Web
 
@@ -46,6 +47,4 @@ Run `npm run build` to build the application, and run `npm run start` to start t
 
 #### Using Docker
 
-> TODO
-
-test
+Run `docker compose -d --profile prod up` to build the containers to start the application, and `docker compose --profile prod down` to stop them.

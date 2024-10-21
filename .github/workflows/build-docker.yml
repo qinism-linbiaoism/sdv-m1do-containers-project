@@ -16,7 +16,7 @@ jobs:
           docker build ./sdv-api --target dev -t qinismlinbiaoism/sdv-api-dev:latest
           docker build ./sdv-api --target prod -t qinismlinbiaoism/sdv-api:latest
           docker build ./sdv-web --target dev -t qinismlinbiaoism/sdv-web-dev:latest
-          docker build ./sdv-web --target prod -t qinismlinbiaoism/sev-web:latest
+          docker build ./sdv-web --target prod -t qinismlinbiaoism/sdv-web:latest
       - name: push_image
         run: |
           docker login -u qinismlinbiaoism -p ${{secrets.DOCKER_HUB_TOKEN}}

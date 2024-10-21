@@ -1,10 +1,13 @@
-FROM rust:1.82.0
+FROM rust:1.82.0 AS builder
 
 WORKDIR /usr/src/sdv-api
 COPY . .
 
 RUN cargo build --release
 
-EXPOSE 8000
 
-CMD ["./target/release/sdv-api"]
+FROM debian:12.7-slim AS prod
+
+COPY --from=builder /usr/src/sdv-api/target/release/sdv-api /usr/local/bin/sdv-api
+
+CMD ["sdv-api"]

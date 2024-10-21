@@ -1,24 +1,28 @@
 services:
   #API
 
-  sdv-api:
-    image: sdv-api:latest
+  api:
+    image: qinismlinbiaoism/sdv-m1do-sdv-api:master
     container_name: sdv-api1
     hostname: sdv-api1
     ports:
-      - "8000:80"
+      - "8000:8000"
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
     networks:
       - res1
 
   #NODE
-  sdv-web:
-    image: sdv-web:latest
+  web:
+    image: qinismlinbiaoism/sdv-m1do-sdv-web:master
     container_name: sdv-web1
     hostname: sdv-web1
+    depends_on:
+      - api
     ports:
       - "3000:3000"
     environment:
-      - API_URL=http://sdv-api1:80
+      - API_URL=http://sdv-api1:8000
     networks:
       - res1
 

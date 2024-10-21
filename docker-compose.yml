@@ -1,0 +1,27 @@
+services:
+  #API
+
+  sdv-api:
+    image: sdv-api:latest
+    container_name: sdv-api1
+    hostname: sdv-api1
+    ports:
+      - "8000:80"
+    networks:
+      - res1
+
+  #NODE
+  sdv-web:
+    image: sdv-web:latest
+    container_name: sdv-web1
+    hostname: sdv-web1
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=http://sdv-api1:80
+    networks:
+      - res1
+
+networks:
+  res1:
+    driver: bridge

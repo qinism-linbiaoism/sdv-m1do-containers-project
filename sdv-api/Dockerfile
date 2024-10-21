@@ -5,4 +5,6 @@ COPY . .
 
 RUN cargo build --release
 
+EXPOSE 8000
+
 CMD ["./target/release/sdv-api"]

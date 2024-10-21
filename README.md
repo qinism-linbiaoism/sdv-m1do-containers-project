@@ -10,7 +10,7 @@
 
 Use `cargo run` to start the dev environment.
 
-You can also install [cargo-watch](https://crates.io/crates/cargo-watch) to watche over your project's source for changes, and runs Cargo commands when they occur : `cargo-watch -x run`.
+You can also install [cargo-watch](https://crates.io/crates/cargo-watch) to watch over your project's source for changes, and runs Cargo commands when they occur : `cargo-watch -x run`.
 
 ### Web
 

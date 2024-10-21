@@ -23,7 +23,6 @@ Use `npm install` to install all dependancies, and `npm run dev` to start the de
 Run `docker compose -d --profile dev up` to build the containers to start the application, and `docker compose --profile prod dev` to stop them.
 You may have to wait until the containers are fully initialized, as it can take a while for the API to build everything necessary for it to run.
 
-> TODO
 
 ## Production
 
